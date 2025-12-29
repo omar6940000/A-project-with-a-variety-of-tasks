@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>البراند الاحترافي - الصفحة الرئيسية</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Swiper.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #4361ee;
+      --secondary: #3f37c9;
+      --dark: #1d3557;
+      --light: #f8f9fa;
+      --success: #4cc9f0;
+      --gray: #adb5bd;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      overflow-x: hidden;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark-mode {
+      background-color: #121212;
+      color: #e9ecef;
+    }
+
+    body.dark-mode .navbar, 
+    body.dark-mode .footer, 
+    body.dark-mode .card, 
+    body.dark-mode .accordion-button {
+      background-color: #1f1f1f;
+      color: #e9ecef;
+    }
+
+    body.dark-mode .card {
+      border-color: #333;
+    }
+
+    body.dark-mode h1, 
+    body.dark-mode h2, 
+    body.dark-mode h3, 
+    body.dark-mode h4, 
+    body.dark-mode h5, 
+    body.dark-mode h6 {
+      color: #ffffff;
+    }
+
+    .hero {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1920x1080/1a1a2e/ffffff?text=Background+Video+Frame') no-repeat center center;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    .hero-content {
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    .hero video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .countdown span {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 10px 15px;
+      border-radius: 8px;
+      min-width: 80px;
+    }
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .about-img {
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .stat-item {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .feature-card {
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .service-card {
+      height: 100%;
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .service-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+
+    .service-img {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      transition: transform 0.5s;
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .testimonial-card {
+      border: none;
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+    }
+
+    .partner-logo {
+      filter: grayscale(100%);
+      opacity: 0.6;
+      transition: all 0.3s;
+      max-height: 60px;
+    }
+
+    .partner-logo:hover {
+      filter: grayscale(0);
+      opacity: 1;
+    }
+
+    .blog-card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+
+    .blog-img {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .faq-item {
+      margin-bottom: 15px;
+      border: 1px solid var(--gray);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .accordion-button:not(.collapsed) {
+      background-color: rgba(67, 97, 238, 0.1);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .pricing-card {
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+    }
+
+    .pricing-card.popular {
+      border-color: var(--primary);
+      transform: scale(1.05);
+    }
+
+    .pricing-card.popular .card-header {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .contact-form {
+      border-radius: 15px;
+      padding: 40px;
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .floating-btn {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      z-index: 1000;
+      transition: transform 0.3s;
+    }
+
+    .floating-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .btn-whatsapp {
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+    }
+
+    .btn-top {
+      bottom: 90px;
+      right: 20px;
+      background-color: var(--primary);
+    }
+
+    .map-container {
+      height: 400px;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #121212;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease-out;
+    }
+
+    .preloader.fade-out {
+      opacity: 0;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Preloader -->
+  <div id="preloader" class="preloader">
+    <div class="text-center">
+      <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+        <span class="visually-hidden">جاري التحميل...</span>
+      </div>
+      <h4 class="mt-3 text-white">البراند الاحترافي</h4>
+    </div>
+  </div>
+
+  <!-- App Container -->
+  <div id="app">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent position-fixed w-100" style="z-index: 1000;">
+      <div class="container">
+        <a class="navbar-brand logo" href="#">البراند</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="#about">من نحن</a></li>
+            <li class="nav-item"><a class="nav-link" href="#features">المميزات</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">الخدمات</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">التصميم</a></li>
+                <li><a class="dropdown-item" href="#">التطوير</a></li>
+                <li><a class="dropdown-item" href="#">التسويق</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#gallery">المعرض</a></li>
+            <li class="nav-item"><a class="nav-link" href="#testimonials">العملاء</a></li>
+            <li class="nav-item"><a class="nav-link" href="#pricing">الأسعار</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">اتصل بنا</a></li>
+          </ul>
+          <div class="d-flex align-items-center">
+            <button class="btn btn-outline-light me-3" @click="scrollToSection('contact')">ابدأ الآن</button>
+            <button class="theme-toggle" @click="toggleTheme">
+              <i :class="darkMode ? 'fas fa-sun' : 'fas fa-moon'"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <video autoplay muted loop>
+        <source src="https://cdn.pixabay.com/video/2021/10/13/100044-572105326_tiny.mp4" type="video/mp4">
+      </video>
+      <div class="hero-content">
+        <h1 class="display-3 fw-bold animate__animated animate__fadeInDown">نصنع المستقبل الرقمي</h1>
+        <p class="lead animate__animated animate__fadeInUp animate__delay-1s">حلول متكاملة للشركات والمؤسسات تجمع بين الابتكار والتكنولوجيا الحديثة لتحقيق أهدافك</p>
+        <div class="countdown animate__animated animate__fadeIn animate__delay-2s" v-if="showCountdown">
+          <span>{{ days }}<br>أيام</span>
+          <span>{{ hours }}<br>ساعات</span>
+          <span>{{ minutes }}<br>دقائق</span>
+          <span>{{ seconds }}<br>ثواني</span>
+        </div>
+        <button class="btn btn-primary btn-lg mt-4 animate__animated animate__zoomIn animate__delay-3s" @click="scrollToSection('services')">
+          اكتشف خدماتنا
+        </button>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section bg-light" :class="{ 'bg-dark text-light': darkMode }">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6" data-aos="fade-right">
+            <img src="https://placehold.co/600x400/4361ee/ffffff?text=About+Us" alt="عن الشركة" class="img-fluid about-img">
+          </div>
+          <div class="col-lg-6" data-aos="fade-left">
+            <h2 class="mb-4">من نحن؟</h2>
+            <p class="lead mb-4">نحن فريق من الخبراء المتخصصين في تقديم حلول رقمية متكاملة تساعد الشركات على النمو والتوسع في العصر الرقمي.</p>
+            <p>منذ تأسيسنا في 2015، قمنا بتنفيذ أكثر من 500 مشروع ناجح لعملاء من مختلف أنحاء العالم، وحصلنا على تقييم 4.9 من 5 من عملائنا الأعزاء.</p>
+            
+            <div class="row mt-5">
+              <div class="col-4 text-center">
+                <div class="stat-item">{{ clientsCount }}</div>
+                <p>عملاء سعداء</p>
+              </div>
+              <div class="col-4 text-center">
+                <div class="stat-item">{{ projectsCount }}</div>
+                <p>مشاريع ناجحة</p>
+              </div>
+              <div class="col-4 text-center">
+                <div class="stat-item">{{ yearsCount }}</div>
+                <p>سنوات خبرة</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section" :class="{ 'bg-dark text-light': darkMode }">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 data-aos="fade-up">لماذا نحن؟</h2>
+          <p class="lead" data-aos="fade-up" data-aos-delay="100">نقدم ميزات فريدة تجعلنا الخيار الأول لعملائنا</p>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="card feature-card h-100 p-4">
+              <div class="feature-icon"><i class="fas fa-rocket"></i></div>
+              <h4>أداء فائق</h4>
+              <p>نستخدم أحدث التقنيات لضمان أداء ممتاز وسرعة في التحميل وتجربة مستخدم ممتازة.</p>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="card feature-card h-100 p-4">
+              <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+              <h4>أمان عالي</h4>
+              <p>نضمن حماية كاملة للبيانات والأنظمة من أي اختراقات أو هجمات إلكترونية.</p>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="card feature-card h-100 p-4">
+              <div class="feature-icon"><i class="fas fa-headset"></i></div>
+              <h4>دعم فني 24/7</h4>
+              <p>فريق الدعم لدينا متاح على مدار الساعة لحل أي مشكلة أو الإجابة على أي استفسار.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section bg-light" :class="{ 'bg-dark text-light': darkMode }">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 data-aos="fade-up">خدماتنا</h2>
+          <p class="lead" data-aos="fade-up" data-aos-delay="100">نقدم مجموعة متكاملة من الخدمات الرقمية</p>
+          
+          <div class="mt-4">
+            <button 
+              v-for="filter in filters" 
+              :key="filter" 
+              class="btn me-2 mb-2" 
+              :class="activeFilter === filter ? 'btn-primary' : 'btn-outline-primary'"
+              @click="setFilter(filter)">
+              {{ filter }}
+            </button>
+          </div>
+        </div>
+        
+        <div class="row g-4">
+          <div 
+            v-for="service in filteredServices" 
+            :key="service.id" 
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up">
+            <div class="card service-card">
+              <img :src="service.image" :alt="service.title" class="service-img">
+              <div class="card-body">
+                <h5 class="card-title">{{ service.title }}</h5>
+                <div class="mb-2">
+                  <small class="text-warning">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                  </small>
+                  <span class="ms-1">({{ service.reviews }})</span>
+                </div>
+                <p class="card-text">{{ service.description }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="fw-bold">{{ service.price }} ر.س</span>
+                  <button class="btn btn-sm btn-primary">اطلب الآن</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section" :class="{ 'bg-dark text-light': darkMode }">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 data-aos="fade-up">معرض الأعمال</h2>
+          <p class="lead" data-aos="fade-up" data-aos-delay="100">استعرض بعض أعمالنا المتميزة</p>
+        </div>
+        
+        <div class="row g-3">
+          <div 
+            v-for="(item, index) in galleryItems" 
+            :key="index" 
+            class="col-6 col-md-4 col-lg-3"
+            data-aos="fade-up">
+            <div class="gallery-item" @click="openGallery(index)">
+              <img :src="item.src" :alt="item.title" class="img-fluid">
+              <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-dark bg-opacity-50 text-white opacity-0 hover-opacity-100 transition-opacity">
+                <i class="fas fa-search-plus fa-2x"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section bg-light" :class="{ 'bg-dark text-light': darkMode }">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 data-aos="fade-up">آراء العملاء</h2>
+          <p class="lead" data-aos="fade-up" data-aos-delay="100">ما يقوله عملاؤنا عن تجربتهم معنا</p>
+        </div>
+        
+        <div class="swiper testimonial-swiper">
+          <div class="swiper-wrapper">
+            <div v-for="(testimonial, index) in testimonials" :key="index" class="swiper-slide">
+              <div class="card testimonial-card">
+                <div class="mb-3">
+                  <i class="fas fa-quote-left text-primary"></i>
+                </div>
+                <p class="mb-4">"{{ testimonial.text }}"</p>
+                <div class="d-flex align-items-center justify-content-center">
+                  <img :src="testimonial.avatar" :alt="testimonial.name" class="rounded-circle me-3" width="60" height="60">
+                  <div>
+                    <h6 class="mb-0">{{ testimonial.name }}</h6>
+                    <small class="text-muted">{{ testimonial.company }}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="section" :class="{ 'bg-dark text-light': darkMode }">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 data-aos="fade-up">شركاؤنا</h2>
+          <p class="lead" data-aos="fade-up" data-aos-delay="100">العلامات التجارية التي نعمل معها</p>
+        </div>
+        
+        <div class="row justify-content-center align-items-center g-5">
+          <div v-for="(partner, index) in partners" :key="index" class="col-6 col-md-4 col-lg-2" data-aos="fade-up" :data-aos-delay="index * 100">
+            <img :src="partner.logo" :alt="partner.name" class="img-fluid partner-logo">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section bg-light" :class="{ 'bg-dark text-light': darkMode }">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 data-aos="fade-up">المدونة</h2>
+          <p class="lead" data-aos="fade-up" data-aos-delay="100">آخر الأخبار والنصائح من عالم التكنولوجيا</p>
+        </div>
+        
+        <div class="row g-4">
+          <div v-for="post in blogPosts" :key="post.id" class="col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="card blog-card">
+              <img :src="post.image" :alt="post.title" class="blog-img">
+              <div class="card-body">
+                <small class="text-muted">{{ post.date }}</small>
+                <h5 class="card-title mt-2">{{ post.title }}</h5>
+                <p class="card-text">{{ post.excerpt }}</p>
+                <a href="#" class="btn btn-outline-primary btn-sm">اقرأ المزيد</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section" :class="{ 'bg-dark text-light': darkMode }">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 data-aos="fade-up">الأسئلة الشائعة</h2>
+          <p class="lead" data-aos="fade-up" data-aos-delay="100">ابحث عن إجابات لأسئلتك</p>
+        </div>
+        
+        <div class="accordion" id="faqAccordion">
+          <div v-for="(faq, index) in faqs" :key="index" class="faq-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button" :class="{ 'collapsed': !faq.open }" type="button" data-bs-toggle="collapse" :data-bs-target="'#faq' + index">
+                {{ faq.question }}
+              </button>
+            </h2>
+            <div :id="'faq' + index" class="accordion-collapse collapse" :class="{ 'show': faq.open }">
+              <div class="accordion-body">
+                {{ faq.answer }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section bg-light" :class="{ 'bg-dark text-light': darkMode }">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 data-aos="fade-up">خطط الأسعار</h2>
+          <p class="lead" data-aos="fade-up" data-aos-delay="100">اختر الخطة التي تناسب احتياجاتك</p>
+        </div>
+        
+        <div class="row g-4">
+          <div v-for="plan in pricingPlans" :key="plan.id" class="col-lg-4" data-aos="fade-up">
+            <div class="card pricing-card h-100" :class="{ 'popular': plan.popular }">
+              <div class="card-header text-center py-4">
+                <h4>{{ plan.name }}</h4>
+                <div class="mt-2">
+                  <span class="display-5 fw-bold">{{ plan.price }}</span>
+                  <span class="text-muted">/شهر</span>
+                </div>
+              </div>
+              <div class="card-body">
+                <ul class="list-unstyled">
+                  <li v-for="feature in plan.features" :key="feature" class="mb-2">
+                    <i class="fas fa-check text-success me-2"></i> {{ feature }}
+                  </li>
+                </ul>
+              </div>
+              <div class="card-footer text-center">
+                <button class="btn" :class="plan.popular ? 'btn-primary' : 'btn-outline-primary'">
+                  اشترك الآن
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section" :class="{ 'bg-dark text-light': darkMode }">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <h2 data-aos="fade-up">ابق على تواصل</h2>
+            <p class="lead" data-aos="fade-up" data-aos-delay="100">نحن هنا لمساعدتك. اتصل بنا في أي وقت.</p>
+            
+            <div class="row mt-5">
+              <div class="col-md-6 mb-4">
+                <div class="d-flex align-items-center">
+                  <div class="bg-primary bg-opacity-10 rounded-circle p-3 me-3">
+                    <i class="fas fa-map-marker-alt text-primary"></i>
+                  </div>
+                  <div>
+                    <h6>العنوان</h6>
+                    <p class="mb-0">الرياض، المملكة العربية السعودية</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="d-flex align-items-center">
+                  <div class="bg-primary bg-opacity-10 rounded-circle p-3 me-3">
+                    <i class="fas fa-phone text-primary"></i>
+                  </div>
+                  <div>
+                    <h6>الهاتف</h6>
+                    <p class="mb-0">+966 50 123 4567</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="d-flex align-items-center">
+                  <div class="bg-primary bg-opacity-10 rounded-circle p-3 me-3">
+                    <i class="fas fa-envelope text-primary"></i>
+                  </div>
+                  <div>
+                    <h6>البريد</h6>
+                    <p class="mb-0">info@brand.com</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="d-flex align-items-center">
+                  <div class="bg-primary bg-opacity-10 rounded-circle p-3 me-3">
+                    <i class="fas fa-clock text-primary"></i>
+                  </div>
+                  <div>
+                    <h6>العمل</h6>
+                    <p class="mb-0">ساعات العمل: 8AM - 6PM</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-6">
+            <form class="contact-form" @submit.prevent="submitForm">
+              <h4>أرسل رسالة</h4>
+              <div class="mb-3">
+                <input type="text" class="form-control" placeholder="الاسم الكامل" v-model="formData.name" required>
+              </div>
+              <div class="mb-3">
+                <input type="email" class="form-control" placeholder="البريد الإلكتروني" v-model="formData.email" required>
+              </div>
+              <div class="mb-3">
+                <textarea class="form-control" rows="5" placeholder="الرسالة" v-model="formData.message" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">أرسل الرسالة</button>
+            </form>
+            
+            <div class="mt-5">
+              <h4>النشرة البريدية</h4>
+              <p>اشترك للحصول على آخر التحديثات والعروض الخاصة.</p>
+              <div class="input-group">
+                <input type="email" class="form-control" placeholder="بريدك الإلكتروني">
+                <button class="btn btn-primary" type="button">اشتراك</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="section bg-light" :class="{ 'bg-dark text-light': darkMode }">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 data-aos="fade-up">مواقعنا</h2>
+          <p class="lead" data-aos="fade-up" data-aos-delay="100">زور أحد فروعنا</p>
+        </div>
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3622.736326646888!2d46.67575231499299!3d24.713552384167735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03890d1a4abd%3A0x9a9d5bcbd69d1f0!2z2KfZg9ix2LHZiCDZhdit2KfZgdiq2YrZitmF2KfZiiDZgdpj2KfZhNmF2YrZgSDYp9mE2YXYqNiq2Yog2KfZhNmF2KfZhNiq2YrZitmK2K8!5e0!3m2!1sar!2ssa!4v1632123456789!5m2!1sar!2ssa" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-light py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 mb-4 mb-lg-0">
+            <h5>البراند</h5>
+            <p class="small">نقدم حلول رقمية متكاملة تساعد الشركات على النمو والتوسع في العصر الرقمي.</p>
+            <div class="d-flex gap-3">
+              <a href="#" class="text-light"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="text-light"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="text-light"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+          
+          <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+            <h6>روابط سريعة</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">الرئيسية</a></li>
+              <li class="mb-2"><a href="#about" class="text-light text-decoration-none">من نحن</a></li>
+              <li class="mb-2"><a href="#services" class="text-light text-decoration-none">الخدمات</a></li>
+              <li class="mb-2"><a href="#pricing" class="text-light text-decoration-none">الأسعار</a></li>
+              <li class="mb-2"><a href="#contact" class="text-light text-decoration-none">اتصل بنا</a></li>
+            </ul>
+          </div>
+          
+          <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
+            <h6>الخدمات</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">تصميم المواقع</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">تطوير التطبيقات</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">التسويق الرقمي</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">استضافة المواقع</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">الدعم الفني</a></li>
+            </ul>
+          </div>
+          
+          <div class="col-lg-4 col-md-4">
+            <h6>النشرة البريدية</h6>
+            <p class="small">اشترك للحصول على آخر التحديثات والعروض الخاصة.</p>
+            <div class="input-group mb-3">
+              <input type="email" class="form-control" placeholder="بريدك الإلكتروني">
+              <button class="btn btn-primary" type="button">اشتراك</button>
+            </div>
+            <p class="small">نحن نحترم خصوصيتك. لن نشارك بريدك مع أي طرف ثالث.</p>
+          </div>
+        </div>
+        
+        <hr class="my-4">
+        
+        <div class="row">
+          <div class="col-md-6">
+            <p class="small mb-0">&copy; 2023 البراند. جميع الحقوق محفوظة.</p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <a href="#" class="text-light text-decoration-none small me-3">سياسة الخصوصية</a>
+            <a href="#" class="text-light text-decoration-none small me-3">شروط الاستخدام</a>
+            <a href="#" class="text-light text-decoration-none small">اتصل بنا</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <button class="floating-btn btn-whatsapp" onclick="window.open('https://wa.me/966501234567')">
+      <i class="fab fa-whatsapp"></i>
+    </button>
+    
+    <button class="floating-btn btn-top" @click="scrollToTop">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Gallery Modal -->
+    <div class="modal fade" id="galleryModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{{ currentGalleryItem?.title }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body p-0">
+            <img :src="currentGalleryItem?.src" :alt="currentGalleryItem?.title" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        once: true
+      });
+
+      // Initialize Swiper
+      document.addEventListener('DOMContentLoaded', function() {
+        new Swiper('.testimonial-swiper', {
+          loop: true,
+          autoplay: {
+            delay: 5000,
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      });
+
+      // Vue App
+      const { createApp } = Vue;
+      
+      createApp({
+        data() {
+          return {
+            darkMode: false,
+            showCountdown: true,
+            days: 0,
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+            clientsCount: 0,
+            projectsCount: 0,
+            yearsCount: 0,
+            activeFilter: 'الكل',
+            filters: ['الكل', 'التصميم', 'التطوير', 'التسويق'],
+            formData: {
+              name: '',
+              email: '',
+              message: ''
+            },
+            currentGalleryItem: null,
+            galleryModal: null,
+            
+            services: [
+              { id: 1, title: 'تصميم المواقع', description: 'تصميم مواقع احترافية تتناسب مع هوية علامتك التجارية', price: '2,500', image: 'https://placehold.co/400x250/4361ee/ffffff?text=Web+Design', category: 'التصميم', reviews: 45 },
+              { id: 2, title: 'تطوير التطبيقات', description: 'تطوير تطبيقات موبايل متكاملة لأنظمة iOS وAndroid', price: '8,000', image: 'https://placehold.co/400x250/3f37c9/ffffff?text=App+Development', category: 'التطوير', reviews: 32 },
+              { id: 3, title: 'التسويق الرقمي', description: 'حملات تسويقية متكاملة على منصات التواصل الاجتماعي', price: '3,500', image: 'https://placehold.co/400x250/7209b7/ffffff?text=Digital+Marketing', category: 'التسويق', reviews: 28 },
+              { id: 4, title: 'استضافة المواقع', description: 'حلول استضافة موثوقة وسريعة لموقعك الإلكتروني', price: '600', image: 'https://placehold.co/400x250/f72585/ffffff?text=Hosting', category: 'التطوير', reviews: 19 },
+              { id: 5, title: 'تصميم الهوية البصرية', description: 'تصميم شعار وعناصر هوية بصرية متكاملة لعلامتك التجارية', price: '1,800', image: 'https://placehold.co/400x250/4cc9f0/ffffff?text=Branding', category: 'التصميم', reviews: 41 },
+              { id: 6, title: 'تحليل البيانات', description: 'تحليل بيانات عملائك وتحويلها إلى رؤى قابلة للتنفيذ', price: '4,200', image: 'https://placehold.co/400x250/4895ef/ffffff?text=Data+Analytics', category: 'التسويق', reviews: 23 }
+            ],
+            
+            galleryItems: [
+              { src: 'https://placehold.co/600x400/4361ee/ffffff?text=Project+1', title: 'مشروع تصميم 1' },
+              { src: 'https://placehold.co/600x400/3f37c9/ffffff?text=Project+2', title: 'مشروع تطوير 1' },
+              { src: 'https://placehold.co/600x400/7209b7/ffffff?text=Project+3', title: 'مشروع تسويق 1' },
+              { src: 'https://placehold.co/600x400/f72585/ffffff?text=Project+4', title: 'مشروع تصميم 2' },
+              { src: 'https://placehold.co/600x400/4cc9f0/ffffff?text=Project+5', title: 'مشروع تطوير 2' },
+              { src: 'https://placehold.co/600x400/4895ef/ffffff?text=Project+6', title: 'مشروع تسويق 2' },
+              { src: 'https://placehold.co/600x400/b5179e/ffffff?text=Project+7', title: 'مشروع تصميم 3' },
+              { src: 'https://placehold.co/600x400/560bad/ffffff?text=Project+8', title: 'مشروع تطوير 3' }
+            ],
+            
+            testimonials: [
+              { name: 'أحمد محمد', company: 'شركة التقنية الحديثة', text: 'الجودة الممتازة والدعم الفني المميز جعل تجربتي معهم رائعة. أنصح بالتعامل معهم بشدة.', avatar: 'https://placehold.co/100/4361ee/ffffff?text=AM' },
+              { name: 'فاطمة علي', company: 'مؤسسة النجاح', text: 'نفذوا مشروعنا في الوقت المحدد وبجودة عالية. الفريق محترف جدًا ومتواصل بشكل ممتاز.', avatar: 'https://placehold.co/100/7209b7/ffffff?text=FA' },
+              { name: 'خالد سعيد', company: 'مجموعة النماء', text: 'النتائج كانت مذهلة! زادت مبيعاتنا بنسبة 150% بعد حملتهم التسويقية. شكراً لكم.', avatar: 'https://placehold.co/100/f72585/ffffff?text=KS' }
+            ],
+            
+            partners: [
+              { name: 'شركة أبل', logo: 'https://placehold.co/200/000000/ffffff?text=Apple' },
+              { name: 'جوجل', logo: 'https://placehold.co/200/4285f4/ffffff?text=Google' },
+              { name: 'مايكروسوفت', logo: 'https://placehold.co/200/f25022/ffffff?text=Microsoft' },
+              { name: 'أمازون', logo: 'https://placehold.co/200/ff9900/ffffff?text=Amazon' },
+              { name: 'فيسبوك', logo: 'https://placehold.co/200/1877f2/ffffff?text=Facebook' },
+              { name: 'تويتر', logo: 'https://placehold.co/200/1da1f2/ffffff?text=Twitter' }
+            ],
+            
+            blogPosts: [
+              { id: 1, title: 'أفضل ممارسات تحسين محركات البحث في 2023', excerpt: 'تعرف على أحدث استراتيجيات تحسين محركات البحث التي يمكن أن تحسن ترتيب موقعك.', image: 'https://placehold.co/400x250/4361ee/ffffff?text=SEO', date: '15 أكتوبر 2023' },
+              { id: 2, title: 'تصميم تجربة مستخدم متميزة', excerpt: 'كيفية تصميم واجهات مستخدم تجذب العملاء وتحسن التحويلات.', image: 'https://placehold.co/400x250/3f37c9/ffffff?text=UX', date: '8 أكتوبر 2023' },
+              { id: 3, title: 'أمن المعلومات في العصر الرقمي', excerpt: 'نصائح مهمة لحماية بيانات عملائك وتأمين أنظمتك من الهجمات الإلكترونية.', image: 'https://placehold.co/400x250/7209b7/ffffff?text=Security', date: '1 أكتوبر 2023' }
+            ],
+            
+            faqs: [
+              { question: 'ما هي مدة تنفيذ المشاريع؟', answer: 'تختلف مدة التنفيذ حسب تعقيد المشروع. المشاريع البسيطة تستغرق من 2-4 أسابيع، بينما المشاريع المعقدة قد تستغرق من 2-6 أشهر.', open: true },
+              { question: 'هل تقدمون دعمًا فنيًا بعد التسليم؟', answer: 'نعم، نقدم دعمًا فنيًا مستمرًا لجميع عملائنا. يمكنك الاشتراك في باقات الدعم المختلفة حسب احتياجاتك.', open: false },
+              { question: 'ما هي طرق الدفع المتاحة؟', answer: 'نقبل الدفع عبر البطاقات الائتمانية، التحويلات البنكية، وPayPal. نوفر أيضًا خيارات التقسيط للعقود الكبيرة.', open: false },
+              { question: 'هل يمكنني طلب تعديلات بعد التسليم؟', answer: 'نعم، يمكنك طلب تعديلات ضمن حدود معقولة. نقدم عددًا معينًا من التعديلات المجانية، ونفرض رسومًا رمزية على التعديلات الإضافية.', open: false }
+            ],
+            
+            pricingPlans: [
+              { id: 1, name: 'الأساسية', price: '1,500', popular: false, features: ['موقع بسيط', 'صفحتان', 'تصميم متجاوب', 'نموذج تواصل', 'دعم فني لمدة شهر'] },
+              { id: 2, name: 'الاحترافية', price: '4,000', popular: true, features: ['موقع احترافي', 'حتى 5 صفحات', 'تصميم مخصص', 'نموذج تواصل', 'تحسين محركات البحث', 'دعم فني لمدة 3 أشهر', 'تحليلات الموقع'] },
+              { id: 3, name: 'المتكاملة', price: '8,000', popular: false, features: ['موقع متكامل', 'حتى 10 صفحات', 'تصميم فاخر', 'نظام محتوى', 'تحسين محركات البحث', 'دعم فني لمدة 6 أشهر', 'تحليلات متقدمة', 'استراتيجية تسويق أولية'] }
+            ]
+          }
+        },
+        
+        computed: {
+          filteredServices() {
+            if (this.activeFilter === 'الكل') {
+              return this.services;
+            }
+            return this.services.filter(service => service.category === this.activeFilter);
+          }
+        },
+        
+        methods: {
+          toggleTheme() {
+            this.darkMode = !this.darkMode;
+            document.body.classList.toggle('dark-mode', this.darkMode);
+          },
+          
+          setFilter(filter) {
+            this.activeFilter = filter;
+          },
+          
+          submitForm() {
+            alert('تم إرسال الرسالة بنجاح! سنتواصل معك في أقرب وقت ممكن.');
+            this.formData = { name: '', email: '', message: '' };
+          },
+          
+          openGallery(index) {
+            this.currentGalleryItem = this.galleryItems[index];
+            const modal = new bootstrap.Modal(document.getElementById('galleryModal'));
+            modal.show();
+          },
+          
+          scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+          },
+          
+          scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          },
+          
+          updateCountdown() {
+            const launchDate = new Date();
+            launchDate.setDate(launchDate.getDate() + 30); // 30 days from now
+            
+            const now = new Date();
+            const difference = launchDate - now;
+            
+            if (difference > 0) {
+              this.days = Math.floor(difference / (1000 * 60 * 60 * 24));
+              this.hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+              this.minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+              this.seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            } else {
+              this.showCountdown = false;
+            }
+          },
+          
+          animateStats() {
+            const targetClients = 500;
+            const targetProjects = 350;
+            const targetYears = 8;
+            
+            let clients = 0;
+            let projects = 0;
+            let years = 0;
+            
+            const clientsInterval = setInterval(() => {
+              if (clients >= targetClients) {
+                clearInterval(clientsInterval);
+              } else {
+                clients += 5;
+                this.clientsCount = clients;
+              }
+            }, 20);
+            
+            const projectsInterval = setInterval(() => {
+              if (projects >= targetProjects) {
+                clearInterval(projectsInterval);
+              } else {
+                projects += 3;
+                this.projectsCount = projects;
+              }
+            }, 25);
+            
+            const yearsInterval = setInterval(() => {
+              if (years >= targetYears) {
+                clearInterval(yearsInterval);
+              } else {
+                years += 0.1;
+                this.yearsCount = Math.floor(years);
+              }
+            }, 100);
+          }
+        },
+        
+        mounted() {
+          // Initialize countdown
+          this.updateCountdown();
+          setInterval(this.updateCountdown, 1000);
+          
+          // Animate stats
+          setTimeout(this.animateStats, 500);
+          
+          // Initialize gallery modal
+          this.galleryModal = new bootstrap.Modal(document.getElementById('galleryModal'));
+          
+          // Preloader
+          setTimeout(() => {
+            const preloader = document.getElementById('preloader');
+            preloader.classList.add('fade-out');
+            setTimeout(() => {
+              preloader.style.display = 'none';
+            }, 500);
+          }, 1500);
+        }
+      }).mount('#app');
+    </script>
+  </div>
+</body>
+</html>

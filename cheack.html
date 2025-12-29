@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>صفحة الدفع - البراند الاحترافي</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #4361ee;
+      --secondary: #3f37c9;
+      --dark: #1d3557;
+      --light: #f8f9fa;
+      --success: #4cc9f0;
+      --gray: #adb5bd;
+      --danger: #ef476f;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      overflow-x: hidden;
+      background-color: #f8f9fa;
+    }
+
+    .checkout-header {
+      background-color: white;
+      padding: 30px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+
+    .progress-steps {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    .progress-steps::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #dee2e6;
+      z-index: 1;
+    }
+
+    .progress-steps .step::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 0;
+      width: 30px;
+      height: 3px;
+      background-color: var(--primary);
+      z-index: 2;
+    }
+
+    .step {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      flex: 1;
+    }
+
+    .step-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #dee2e6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #6c757d;
+      transition: all 0.3s;
+    }
+
+    .step.active .step-icon {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .step.completed .step-icon {
+      background-color: var(--success);
+      color: white;
+    }
+
+    .step-label {
+      font-size: 0.9rem;
+      color: #6c757d;
+      transition: color 0.3s;
+    }
+
+    .step.active .step-label,
+    .step.completed .step-label {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 30px 0 20px;
+      color: var(--dark);
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 60px;
+      height: 3px;
+      background-color: var(--primary);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .form-control, .form-select {
+      border: 2px solid #dee2e6;
+      border-radius: 10px;
+      padding: 12px 15px;
+      font-size: 1rem;
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
+    }
+
+    .payment-method {
+      border: 2px solid #dee2e6;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .payment-method:hover {
+      border-color: var(--primary);
+    }
+
+    .payment-method.selected {
+      border-color: var(--primary);
+      background-color: rgba(67, 97, 238, 0.05);
+    }
+
+    .payment-method i {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .payment-visa i {
+      color: #1a1f71;
+    }
+
+    .payment-mada i {
+      color: #006633;
+    }
+
+    .payment-cash i {
+      color: #ff9900;
+    }
+
+    .order-summary {
+      background-color: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 100px;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .order-item:last-child {
+      border-bottom: none;
+    }
+
+    .order-total {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 2px solid #eee;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .btn-checkout {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      width: 100%;
+      transition: all 0.3s;
+      box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+    }
+
+    .btn-checkout:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(67, 97, 238, 0.6);
+    }
+
+    .btn-checkout:disabled {
+      background-color: #6c757d;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .error-message {
+      color: var(--danger);
+      font-size: 0.85rem;
+      margin-top: 5px;
+    }
+
+    .valid-message {
+      color: var(--success);
+      font-size: 0.85rem;
+      margin-top: 5px;
+    }
+
+    .card-form {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #f8f9fa;
+      border-radius: 10px;
+    }
+
+    .card-form.active {
+      display: block;
+    }
+
+    .card-input {
+      margin-bottom: 15px;
+    }
+
+    .card-input label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .card-number {
+      font-family: monospace;
+      letter-spacing: 2px;
+    }
+
+    @media (max-width: 991.98px) {
+      .order-summary {
+        position: static;
+        margin-top: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- App Container -->
+  <div id="app">
+    <!-- Checkout Header -->
+    <header class="checkout-header">
+      <div class="container">
+        <div class="text-center">
+          <h1>إتمام الطلب</h1>
+          <p class="text-muted">املأ البيانات أدناه لإكمال عملية الشراء</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Progress Steps -->
+    <div class="container">
+      <div class="progress-steps" data-aos="fade-up">
+        <div class="step active">
+          <div class="step-icon">1</div>
+          <div class="step-label">بيانات العميل</div>
+        </div>
+        <div class="step" :class="{ active: activeStep >= 2, completed: activeStep > 2 }">
+          <div class="step-icon">2</div>
+          <div class="step-label">وسيلة الدفع</div>
+        </div>
+        <div class="step" :class="{ active: activeStep >= 3, completed: activeStep > 3 }">
+          <div class="step-icon">3</div>
+          <div class="step-label">تأكيد الطلب</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkout Form -->
+    <section class="container my-5">
+      <div class="row">
+        <!-- Checkout Form -->
+        <div class="col-lg-7">
+          <form @submit.prevent="proceedToPayment" data-aos="fade-right">
+            <h3 class="section-title">بيانات العميل</h3>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">الاسم الكامل *</label>
+                  <input type="text" class="form-control" v-model="customer.name" @blur="validateName" :class="{ 'is-invalid': errors.name, 'is-valid': nameValid && customer.name }">
+                  <div class="error-message" v-if="errors.name">{{ errors.name }}</div>
+                  <div class="valid-message" v-if="nameValid && customer.name">الاسم صحيح</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">رقم الجوال *</label>
+                  <input type="tel" class="form-control" v-model="customer.phone" @blur="validatePhone" :class="{ 'is-invalid': errors.phone, 'is-valid': phoneValid && customer.phone }">
+                  <div class="error-message" v-if="errors.phone">{{ errors.phone }}</div>
+                  <div class="valid-message" v-if="phoneValid && customer.phone">رقم الجوال صحيح</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">البريد الإلكتروني *</label>
+              <input type="email" class="form-control" v-model="customer.email" @blur="validateEmail" :class="{ 'is-invalid': errors.email, 'is-valid': emailValid && customer.email }">
+              <div class="error-message" v-if="errors.email">{{ errors.email }}</div>
+              <div class="valid-message" v-if="emailValid && customer.email">البريد الإلكتروني صحيح</div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">الدولة *</label>
+              <select class="form-select" v-model="customer.country" @change="validateCountry">
+                <option value="">اختر الدولة</option>
+                <option value="sa">المملكة العربية السعودية</option>
+                <option value="ae">الإمارات العربية المتحدة</option>
+                <option value="eg">مصر</option>
+                <option value="jo">الأردن</option>
+                <option value="kw">الكويت</option>
+              </select>
+              <div class="error-message" v-if="errors.country">{{ errors.country }}</div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">المدينة *</label>
+              <input type="text" class="form-control" v-model="customer.city" @blur="validateCity" :class="{ 'is-invalid': errors.city, 'is-valid': cityValid && customer.city }">
+              <div class="error-message" v-if="errors.city">{{ errors.city }}</div>
+              <div class="valid-message" v-if="cityValid && customer.city">المدينة صحيحة</div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">العنوان بالتفصيل *</label>
+              <textarea class="form-control" rows="3" v-model="customer.address" @blur="validateAddress" :class="{ 'is-invalid': errors.address, 'is-valid': addressValid && customer.address }"></textarea>
+              <div class="error-message" v-if="errors.address">{{ errors.address }}</div>
+              <div class="valid-message" v-if="addressValid && customer.address">العنوان صحيح</div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">الرمز البريدي</label>
+              <input type="text" class="form-control" v-model="customer.postalCode">
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-4" :disabled="!formValid">
+              <span v-if="activeStep === 1">التالي إلى وسيلة الدفع</span>
+              <span v-else-if="activeStep === 2">تأكيد الطلب</span>
+            </button>
+          </form>
+
+          <!-- Payment Methods -->
+          <form v-if="activeStep >= 2" @submit.prevent="confirmOrder" data-aos="fade-right" data-aos-delay="100">
+            <h3 class="section-title mt-5">وسيلة الدفع</h3>
+            
+            <div class="payment-method payment-visa" :class="{ selected: paymentMethod === 'visa' }" @click="selectPaymentMethod('visa')">
+              <div class="d-flex align-items-center">
+                <i class="fab fa-cc-visa"></i>
+                <div class="ms-3">
+                  <h5>بطاقة ائتمان</h5>
+                  <p class="text-muted mb-0">ادفع باستخدام بطاقة فيزا أو ماستر كارد</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="payment-method payment-mada" :class="{ selected: paymentMethod === 'mada' }" @click="selectPaymentMethod('mada')">
+              <div class="d-flex align-items-center">
+                <i class="fas fa-mobile-alt"></i>
+                <div class="ms-3">
+                  <h5>مدى (Mada)</h5>
+                  <p class="text-muted mb-0">ادفع باستخدام بطاقة مدى مباشرة</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="payment-method payment-cash" :class="{ selected: paymentMethod === 'cash' }" @click="selectPaymentMethod('cash')">
+              <div class="d-flex align-items-center">
+                <i class="fas fa-money-bill-wave"></i>
+                <div class="ms-3">
+                  <h5>كاش عند الاستلام</h5>
+                  <p class="text-muted mb-0">ادفع نقدًا عند استلام الطلب</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Form (only for visa/mada) -->
+            <div class="card-form" :class="{ active: paymentMethod === 'visa' || paymentMethod === 'mada' }">
+              <h5>بيانات البطاقة</h5>
+              <div class="row">
+                <div class="col-md-6 card-input">
+                  <label>رقم البطاقة</label>
+                  <input type="text" class="form-control card-number" v-model="card.number" placeholder="1234 5678 9012 3456" @input="formatCardNumber">
+                </div>
+                <div class="col-md-3 card-input">
+                  <label>تاريخ الانتهاء</label>
+                  <input type="text" class="form-control" v-model="card.expiry" placeholder="MM/YY" @input="formatExpiryDate">
+                </div>
+                <div class="col-md-3 card-input">
+                  <label>رمز التحقق (CVV)</label>
+                  <input type="text" class="form-control" v-model="card.cvv" placeholder="123">
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-4" :disabled="!paymentMethod">
+              <span v-if="activeStep === 2">تأكيد الطلب</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="col-lg-5">
+          <div class="order-summary" data-aos="fade-left">
+            <h4>ملخص الطلب</h4>
+            
+            <div v-for="item in orderItems" :key="item.id" class="order-item">
+              <div>
+                <h6>{{ item.name }}</h6>
+                <small class="text-muted">الكمية: {{ item.quantity }}</small>
+              </div>
+              <div>
+                <span v-if="item.discount" class="text-muted" style="text-decoration: line-through;">{{ item.originalPrice * item.quantity }} ر.س</span>
+                <span v-if="item.discount" class="fw-bold">{{ item.price * item.quantity }} ر.س</span>
+                <span v-else class="fw-bold">{{ item.price * item.quantity }} ر.س</span>
+              </div>
+            </div>
+
+            <div class="order-total">
+              <div class="total-row">
+                <span>المجموع</span>
+                <span>{{ subtotal }} ر.س</span>
+              </div>
+              <div class="total-row">
+                <span>الشحن</span>
+                <span>{{ shippingCost }} ر.س</span>
+              </div>
+              <div class="total-row" v-if="discount > 0">
+                <span>الخصم</span>
+                <span>-{{ discount }} ر.س</span>
+              </div>
+              <div class="total-row">
+                <span>الإجمالي</span>
+                <span>{{ total }} ر.س</span>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <h6>طرق الشحن المتاحة:</h6>
+              <p class="text-muted mb-2">الشحن القياسي (3-5 أيام عمل): 50 ر.س</p>
+              <p class="text-muted">الشحن السريع (1-2 أيام عمل): 100 ر.س</p>
+            </div>
+
+            <div class="mt-4 p-3 bg-light rounded">
+              <div class="d-flex align-items-center">
+                <i class="fas fa-shield-alt text-primary me-2"></i>
+                <small>جميع المعاملات مؤمنة ومشفرة</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-light py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 mb-4 mb-lg-0">
+            <h5>البراند</h5>
+            <p class="small">نقدم حلول رقمية متكاملة تساعد الشركات على النمو والتوسع في العصر الرقمي.</p>
+            <div class="d-flex gap-3">
+              <a href="#" class="text-light"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="text-light"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="text-light"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+          
+          <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+            <h6>روابط سريعة</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">الرئيسية</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">المنتجات</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">الخدمات</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">من نحن</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">اتصل بنا</a></li>
+            </ul>
+          </div>
+          
+          <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
+            <h6>المنتجات</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">تصميم المواقع</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">تطوير التطبيقات</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">التسويق الرقمي</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">استضافة المواقع</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">الدعم الفني</a></li>
+            </ul>
+          </div>
+          
+          <div class="col-lg-4 col-md-4">
+            <h6>النشرة البريدية</h6>
+            <p class="small">اشترك للحصول على آخر التحديثات والعروض الخاصة.</p>
+            <div class="input-group mb-3">
+              <input type="email" class="form-control" placeholder="بريدك الإلكتروني">
+              <button class="btn btn-primary" type="button">اشتراك</button>
+            </div>
+            <p class="small">نحن نحترم خصوصيتك. لن نشارك بريدك مع أي طرف ثالث.</p>
+          </div>
+        </div>
+        
+        <hr class="my-4">
+        
+        <div class="row">
+          <div class="col-md-6">
+            <p class="small mb-0">&copy; 2023 البراند. جميع الحقوق محفوظة.</p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <a href="#" class="text-light text-decoration-none small me-3">سياسة الخصوصية</a>
+            <a href="#" class="text-light text-decoration-none small me-3">شروط الاستخدام</a>
+            <a href="#" class="text-light text-decoration-none small">اتصل بنا</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        once: true
+      });
+
+      // Vue App
+      const { createApp } = Vue;
+      
+      createApp({
+        data() {
+          return {
+            activeStep: 1,
+            
+            customer: {
+              name: '',
+              phone: '',
+              email: '',
+              country: '',
+              city: '',
+              address: '',
+              postalCode: ''
+            },
+            
+            paymentMethod: '',
+            
+            card: {
+              number: '',
+              expiry: '',
+              cvv: ''
+            },
+            
+            errors: {
+              name: '',
+              phone: '',
+              email: '',
+              country: '',
+              city: '',
+              address: ''
+            },
+            
+            nameValid: false,
+            phoneValid: false,
+            emailValid: false,
+            cityValid: false,
+            addressValid: false,
+            
+            orderItems: [
+              {
+                id: 1,
+                name: 'تصميم مواقع احترافية',
+                price: 2095,
+                originalPrice: 2500,
+                discount: 405,
+                quantity: 1
+              },
+              {
+                id: 2,
+                name: 'استضافة الموقع (سنة)',
+                price: 600,
+                originalPrice: 600,
+                discount: 0,
+                quantity: 1
+              }
+            ]
+          }
+        },
+        
+        computed: {
+          subtotal() {
+            return this.orderItems.reduce((total, item) => {
+              return total + (item.price * item.quantity);
+            }, 0);
+          },
+          
+          shippingCost() {
+            return 50; // Standard shipping
+          },
+          
+          discount() {
+            return this.orderItems.reduce((total, item) => {
+              return total + (item.discount * item.quantity);
+            }, 0);
+          },
+          
+          total() {
+            return this.subtotal + this.shippingCost - this.discount;
+          },
+          
+          formValid() {
+            return this.nameValid && 
+                   this.phoneValid && 
+                   this.emailValid && 
+                   this.customer.country && 
+                   this.cityValid && 
+                   this.addressValid;
+          }
+        },
+        
+        methods: {
+          validateName() {
+            if (!this.customer.name) {
+              this.errors.name = 'الرجاء إدخال الاسم الكامل';
+              this.nameValid = false;
+            } else if (this.customer.name.length < 3) {
+              this.errors.name = 'يجب أن يكون الاسم مكونًا من 3 أحرف على الأقل';
+              this.nameValid = false;
+            } else {
+              this.errors.name = '';
+              this.nameValid = true;
+            }
+          },
+          
+          validatePhone() {
+            const phoneRegex = /^[\+]?[0-9]{8,14}$/;
+            if (!this.customer.phone) {
+              this.errors.phone = 'الرجاء إدخال رقم الجوال';
+              this.phoneValid = false;
+            } else if (!phoneRegex.test(this.customer.phone.replace(/\s/g, ''))) {
+              this.errors.phone = 'رقم الجوال غير صحيح';
+              this.phoneValid = false;
+            } else {
+              this.errors.phone = '';
+              this.phoneValid = true;
+            }
+          },
+          
+          validateEmail() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!this.customer.email) {
+              this.errors.email = 'الرجاء إدخال البريد الإلكتروني';
+              this.emailValid = false;
+            } else if (!emailRegex.test(this.customer.email)) {
+              this.errors.email = 'البريد الإلكتروني غير صحيح';
+              this.emailValid = false;
+            } else {
+              this.errors.email = '';
+              this.emailValid = true;
+            }
+          },
+          
+          validateCountry() {
+            if (!this.customer.country) {
+              this.errors.country = 'الرجاء اختيار الدولة';
+            } else {
+              this.errors.country = '';
+            }
+          },
+          
+          validateCity() {
+            if (!this.customer.city) {
+              this.errors.city = 'الرجاء إدخال المدينة';
+              this.cityValid = false;
+            } else if (this.customer.city.length < 2) {
+              this.errors.city = 'يجب أن تكون المدينة مكونة من حرفين على الأقل';
+              this.cityValid = false;
+            } else {
+              this.errors.city = '';
+              this.cityValid = true;
+            }
+          },
+          
+          validateAddress() {
+            if (!this.customer.address) {
+              this.errors.address = 'الرجاء إدخال العنوان بالتفصيل';
+              this.addressValid = false;
+            } else if (this.customer.address.length < 10) {
+              this.errors.address = 'يجب أن يكون العنوان مكونًا من 10 أحرف على الأقل';
+              this.addressValid = false;
+            } else {
+              this.errors.address = '';
+              this.addressValid = true;
+            }
+          },
+          
+          proceedToPayment() {
+            // Validate all fields
+            this.validateName();
+            this.validatePhone();
+            this.validateEmail();
+            this.validateCountry();
+            this.validateCity();
+            this.validateAddress();
+            
+            if (this.formValid) {
+              this.activeStep = 2;
+              // Scroll to top
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+              alert('الرجاء التأكد من صحة جميع البيانات المطلوبة');
+            }
+          },
+          
+          selectPaymentMethod(method) {
+            this.paymentMethod = method;
+          },
+          
+          formatCardNumber(e) {
+            let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = '';
+            
+            for (let i = 0; i < value.length; i++) {
+              if (i > 0 && i % 4 === 0) {
+                formattedValue += ' ';
+              }
+              formattedValue += value[i];
+            }
+            
+            this.card.number = formattedValue.slice(0, 19);
+          },
+          
+          formatExpiryDate(e) {
+            let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+            if (value.length >= 2) {
+              value = value.slice(0, 2) + '/' + value.slice(2, 4);
+            }
+            this.card.expiry = value.slice(0, 5);
+          },
+          
+          confirmOrder() {
+            if (!this.paymentMethod) {
+              alert('الرجاء اختيار وسيلة الدفع');
+              return;
+            }
+            
+            if ((this.paymentMethod === 'visa' || this.paymentMethod === 'mada') && 
+                (!this.card.number || !this.card.expiry || !this.card.cvv)) {
+              alert('الرجاء إدخال بيانات البطاقة بالكامل');
+              return;
+            }
+            
+            // Simulate order confirmation
+            this.activeStep = 3;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            setTimeout(() => {
+              alert(`تم تأكيد طلبك بنجاح!\nرقم الطلب: ORD-${Math.floor(Math.random() * 100000)}\nسيتم التواصل معك خلال 24 ساعة للتأكيد.`);
+              // Redirect to homepage or order confirmation page
+              // window.location.href = 'confirmation.html';
+            }, 1000);
+          }
+        },
+        
+        watch: {
+          'customer.name'() {
+            if (this.activeStep === 1) this.validateName();
+          },
+          'customer.phone'() {
+            if (this.activeStep === 1) this.validatePhone();
+          },
+          'customer.email'() {
+            if (this.activeStep === 1) this.validateEmail();
+          },
+          'customer.country'() {
+            if (this.activeStep === 1) this.validateCountry();
+          },
+          'customer.city'() {
+            if (this.activeStep === 1) this.validateCity();
+          },
+          'customer.address'() {
+            if (this.activeStep === 1) this.validateAddress();
+          }
+        }
+      }).mount('#app');
+    </script>
+  </div>
+</body>
+</html>

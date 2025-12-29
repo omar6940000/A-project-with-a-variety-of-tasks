@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تفاصيل المنتج - البراند الاحترافي</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Swiper.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #4361ee;
+      --secondary: #3f37c9;
+      --dark: #1d3557;
+      --light: #f8f9fa;
+      --success: #4cc9f0;
+      --gray: #adb5bd;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .breadcrumbs {
+      background-color: #f8f9fa;
+      padding: 15px 0;
+      border-bottom: 1px solid #dee2e6;
+    }
+
+    .breadcrumbs .nav-link {
+      color: #6c757d;
+      font-size: 0.9rem;
+    }
+
+    .breadcrumbs .nav-link.active {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .product-images-swiper {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .product-images-swiper .swiper-slide img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    .product-thumbnails .swiper-slide {
+      opacity: 0.6;
+      cursor: pointer;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .product-thumbnails .swiper-slide img {
+      width: 100%;
+      height: 80px;
+      object-fit: cover;
+    }
+
+    .product-thumbnails .swiper-slide-thumb-active {
+      opacity: 1;
+      border: 2px solid var(--primary);
+    }
+
+    .product-info {
+      padding: 40px 0;
+    }
+
+    .product-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .product-price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .product-old-price {
+      text-decoration: line-through;
+      color: #adb5bd;
+      margin-right: 15px;
+      font-size: 1.2rem;
+    }
+
+    .product-rating {
+      color: #ffc107;
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+    }
+
+    .product-reviews {
+      color: #6c757d;
+      font-size: 0.9rem;
+    }
+
+    .product-badge {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .product-discount {
+      background-color: #ef476f;
+      color: white;
+    }
+
+    .product-new {
+      background-color: #06d6a0;
+      color: white;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 40px 0 25px;
+      color: var(--dark);
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 60px;
+      height: 3px;
+      background-color: var(--primary);
+    }
+
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    .specs-table th {
+      text-align: right;
+      padding: 12px 15px;
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #dee2e6;
+      width: 30%;
+    }
+
+    .specs-table td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #dee2e6;
+    }
+
+    .specs-table tr:last-child td,
+    .specs-table tr:last-child th {
+      border-bottom: none;
+    }
+
+    .specs-table tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+
+    .option-group {
+      margin-bottom: 25px;
+    }
+
+    .option-group h6 {
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+
+    .option-item {
+      display: inline-block;
+      margin: 0 10px 10px 0;
+      cursor: pointer;
+      padding: 10px 20px;
+      border: 2px solid #dee2e6;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .option-item:hover {
+      border-color: var(--primary);
+    }
+
+    .option-item.selected {
+      border-color: var(--primary);
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .color-option {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: inline-block;
+      cursor: pointer;
+      border: 2px solid #dee2e6;
+    }
+
+    .color-option.selected {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.3);
+    }
+
+    .action-buttons {
+      margin: 30px 0;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 50px;
+    }
+
+    .btn-outline-primary {
+      border-color: var(--primary);
+      color: var(--primary);
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 50px;
+    }
+
+    .btn-outline-primary:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .related-products .swiper-slide {
+      height: auto;
+    }
+
+    .related-product-card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s;
+      height: 100%;
+    }
+
+    .related-product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .related-product-img {
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .related-product-info {
+      padding: 15px;
+    }
+
+    .related-product-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .related-product-price {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .testimonial-item {
+      background-color: #f8f9fa;
+      padding: 25px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .testimonial-item::before {
+      content: '"';
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 5rem;
+      color: rgba(67, 97, 238, 0.1);
+  font-family: Georgia, serif;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .testimonial-author img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-left: 15px;
+    }
+
+    .testimonial-author-info h6 {
+      margin-bottom: 0;
+      font-weight: 600;
+    }
+
+    .testimonial-author-info small {
+      color: #6c757d;
+    }
+
+    .review-rating {
+      color: #ffc107;
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    .review-form {
+      border: 1px solid #dee2e6;
+      border-radius: 15px;
+      padding: 30px;
+      margin-top: 30px;
+    }
+
+    .review-form h5 {
+      margin-bottom: 20px;
+      color: var(--dark);
+    }
+
+    .rating-input {
+      display: flex;
+      margin: 15px 0;
+      gap: 5px;
+    }
+
+    .rating-input i {
+      font-size: 1.5rem;
+      color: #dee2e6;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .rating-input i:hover,
+    .rating-input i.active {
+      color: #ffc107;
+    }
+
+    .review-submit {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .review-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+    }
+
+    @media (max-width: 991.98px) {
+      .product-title {
+        font-size: 2rem;
+      }
+      
+      .product-images-swiper .swiper-slide img {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- App Container -->
+  <div id="app">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">البراند</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+            <li class="nav-item"><a class="nav-link" href="products.html">المنتجات</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#">تفاصيل المنتج</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">من نحن</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">اتصل بنا</a></li>
+          </ul>
+          <div class="d-flex">
+            <button class="btn btn-outline-light me-2"><i class="fas fa-shopping-cart"></i></button>
+            <button class="btn btn-outline-light"><i class="fas fa-user"></i></button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs">
+      <div class="container">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">الرئيسية</a></li>
+          <li class="breadcrumb-item"><a href="products.html">المنتجات</a></li>
+          <li class="breadcrumb-item"><a href="#">التصميم</a></li>
+          <li class="breadcrumb-item active" aria-current="page">تصميم مواقع احترافية</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- Product Details -->
+    <section class="container my-5">
+      <div class="row">
+        <!-- Product Images -->
+        <div class="col-lg-7 mb-5 mb-lg-0">
+          <div data-aos="fade-right">
+            <!-- Main Swiper -->
+            <div class="swiper product-images-swiper">
+              <div class="swiper-wrapper">
+                <div v-for="image in product.images" :key="image" class="swiper-slide">
+                  <img :src="image" :alt="product.title">
+                </div>
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
+
+            <!-- Thumbnail Swiper -->
+            <div class="swiper product-thumbnails mt-3">
+              <div class="swiper-wrapper">
+                <div v-for="image in product.images" :key="image" class="swiper-slide">
+                  <img :src="image" :alt="product.title">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="col-lg-5">
+          <div class="product-info" data-aos="fade-left">
+            <h1 class="product-title">{{ product.title }}</h1>
+            
+            <div class="d-flex align-items-center">
+              <div class="product-rating">
+                <span v-for="star in 5" :key="star">
+                  <i v-if="star <= product.rating" class="fas fa-star"></i>
+                  <i v-else class="far fa-star"></i>
+                </span>
+              </div>
+              <span class="product-reviews ms-2">({{ product.reviews }} تقييم)</span>
+            </div>
+
+            <div v-if="product.discount" class="product-badge product-discount">خصم {{ product.discount }}%</div>
+            <div v-if="product.new" class="product-badge product-new">جديد</div>
+
+            <div class="d-flex align-items-center">
+              <span v-if="product.discount" class="product-old-price">{{ product.originalPrice }} ر.س</span>
+              <span :class="{ 'product-old-price': product.discount }" v-else>{{ product.price }} ر.س</span>
+              <span v-if="product.discount" class="product-price ms-3">{{ product.price }} ر.س</span>
+            </div>
+
+            <p class="mt-4">{{ product.shortDescription }}</p>
+
+            <!-- Options -->
+            <div v-if="product.options.size" class="option-group">
+              <h6>الحجم</h6>
+              <div v-for="size in product.options.size" :key="size" 
+                   class="option-item" 
+                   :class="{ 'selected': selectedSize === size }"
+                   @click="selectedSize = size">
+                {{ size }}
+              </div>
+            </div>
+
+            <div v-if="product.options.color" class="option-group">
+              <h6>اللون</h6>
+              <div v-for="color in product.options.color" :key="color.value" 
+                   class="color-option" 
+                   :class="{ 'selected': selectedColor === color.value }"
+                   :style="{ backgroundColor: color.value }"
+                   @click="selectedColor = color.value"
+                   :title="color.name">
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+              <button class="btn btn-primary" @click="addToCart">
+                <i class="fas fa-shopping-cart me-2"></i> إضافة للسلة
+              </button>
+              <button class="btn btn-outline-primary" @click="buyNow">
+                <i class="fas fa-credit-card me-2"></i> شراء الآن
+              </button>
+            </div>
+
+            <!-- Product Features -->
+            <div class="d-flex align-items-center mt-4">
+              <div class="text-center me-4">
+                <i class="fas fa-truck text-primary" style="font-size: 2rem;"></i>
+                <div class="mt-1">توصيل سريع</div>
+              </div>
+              <div class="text-center me-4">
+                <i class="fas fa-undo text-primary" style="font-size: 2rem;"></i>
+                <div class="mt-1">إرجاع خلال 30 يوم</div>
+              </div>
+              <div class="text-center">
+                <i class="fas fa-shield-alt text-primary" style="font-size: 2rem;"></i>
+                <div class="mt-1">دفع آمن</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Description Tabs -->
+      <div class="row mt-5">
+        <div class="col-12">
+          <ul class="nav nav-tabs" id="productTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="features-tab" data-bs-toggle="tab" data-bs-target="#features" type="button">
+                المميزات
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs" type="button">
+                المواصفات
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="included-tab" data-bs-toggle="tab" data-bs-target="#included" type="button">
+                ما الذي يتضمنه
+              </button>
+            </li>
+          </ul>
+
+          <div class="tab-content" id="productTabsContent">
+            <!-- Features -->
+            <div class="tab-pane fade show active" id="features" role="tabpanel">
+              <h3 class="section-title">مميزات المنتج</h3>
+              <div class="row">
+                <div v-for="(feature, index) in product.features" :key="index" class="col-md-6 mb-4">
+                  <div class="d-flex">
+                    <div class="text-primary me-3 mt-1">
+                      <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div>
+                      <h5>{{ feature.title }}</h5>
+                      <p class="text-muted">{{ feature.description }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Specifications -->
+            <div class="tab-pane fade" id="specs" role="tabpanel">
+              <h3 class="section-title">مواصفات المنتج</h3>
+              <table class="specs-table">
+                <tr v-for="spec in product.specifications" :key="spec.name">
+                  <th>{{ spec.name }}</th>
+                  <td>{{ spec.value }}</td>
+                </tr>
+              </table>
+            </div>
+
+            <!-- What's Included -->
+            <div class="tab-pane fade" id="included" role="tabpanel">
+              <h3 class="section-title">ما الذي يتضمنه</h3>
+              <div class="row">
+                <div v-for="(item, index) in product.included" :key="index" class="col-md-6 mb-4">
+                  <div class="d-flex">
+                    <div class="text-success me-3 mt-1">
+                      <i class="fas fa-box"></i>
+                    </div>
+                    <div>
+                      <h5>{{ item.name }}</h5>
+                      <p class="text-muted">{{ item.description }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sidebar Content -->
+    <section class="container my-5">
+      <div class="row">
+        <!-- Related Products -->
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <div data-aos="fade-up">
+            <h4>منتجات ذات صلة</h4>
+            <div class="swiper related-products">
+              <div class="swiper-wrapper">
+                <div v-for="product in relatedProducts" :key="product.id" class="swiper-slide">
+                  <div class="related-product-card">
+                    <img :src="product.image" :alt="product.title" class="related-product-img">
+                    <div class="related-product-info">
+                      <h5 class="related-product-title">{{ product.title }}</h5>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span v-if="product.discount" class="text-muted" style="text-decoration: line-through;">{{ product.originalPrice }} ر.س</span>
+                        <span v-if="product.discount" class="related-product-price">{{ product.price }} ر.س</span>
+                        <span v-else class="related-product-price">{{ product.price }} ر.س</span>
+                        <div class="text-warning">
+                          <i class="fas fa-star"></i>
+                          <small>{{ product.rating }}</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Customer Reviews -->
+        <div class="col-lg-8">
+          <div data-aos="fade-up" data-aos-delay="100">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h4>تقييمات العملاء</h4>
+              <div class="d-flex align-items-center">
+                <div class="text-warning me-2" style="font-size: 1.5rem;">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span>4.8 من 5</span>
+              </div>
+            </div>
+
+            <div v-for="review in reviews" :key="review.id" class="testimonial-item">
+              <div class="review-rating">
+                <span v-for="star in 5" :key="star">
+                  <i v-if="star <= review.rating" class="fas fa-star"></i>
+                  <i v-else class="far fa-star"></i>
+                </span>
+              </div>
+              <p>{{ review.text }}</p>
+              <div class="testimonial-author">
+                <img :src="review.avatar" :alt="review.name">
+                <div class="testimonial-author-info">
+                  <h6>{{ review.name }}</h6>
+                  <small>{{ review.date }}</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review Form -->
+            <div class="review-form" v-if="showReviewForm">
+              <h5>اكتب تقييمك</h5>
+              <form @submit.prevent="submitReview">
+                <div class="mb-3">
+                  <label class="form-label">التقييم</label>
+                  <div class="rating-input">
+                    <i v-for="star in 5" :key="star" 
+                       :class="{ 'fas': star <= rating, 'far': star > rating }"
+                       @click="rating = star"
+                       @mouseover="hoverRating = star"
+                       @mouseleave="hoverRating = 0">
+                    </i>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">الاسم</label>
+                  <input type="text" class="form-control" v-model="reviewForm.name" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">البريد الإلكتروني</label>
+                  <input type="email" class="form-control" v-model="reviewForm.email" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">التعليق</label>
+                  <textarea class="form-control" rows="5" v-model="reviewForm.comment" required></textarea>
+                </div>
+                <button type="submit" class="review-submit">
+                  إرسال التقييم
+                </button>
+              </form>
+            </div>
+
+            <button v-else class="btn btn-outline-primary" @click="showReviewForm = true">
+              <i class="fas fa-plus"></i> أضف تقييمك
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-light py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 mb-4 mb-lg-0">
+            <h5>البراند</h5>
+            <p class="small">نقدم حلول رقمية متكاملة تساعد الشركات على النمو والتوسع في العصر الرقمي.</p>
+            <div class="d-flex gap-3">
+              <a href="#" class="text-light"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="text-light"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="text-light"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+          
+          <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+            <h6>روابط سريعة</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">الرئيسية</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">المنتجات</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">الخدمات</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">من نحن</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">اتصل بنا</a></li>
+            </ul>
+          </div>
+          
+          <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
+            <h6>المنتجات</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">تصميم المواقع</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">تطوير التطبيقات</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">التسويق الرقمي</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">استضافة المواقع</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">الدعم الفني</a></li>
+            </ul>
+          </div>
+          
+          <div class="col-lg-4 col-md-4">
+            <h6>النشرة البريدية</h6>
+            <p class="small">اشترك للحصول على آخر التحديثات والعروض الخاصة.</p>
+            <div class="input-group mb-3">
+              <input type="email" class="form-control" placeholder="بريدك الإلكتروني">
+              <button class="btn btn-primary" type="button">اشتراك</button>
+            </div>
+            <p class="small">نحن نحترم خصوصيتك. لن نشارك بريدك مع أي طرف ثالث.</p>
+          </div>
+        </div>
+        
+        <hr class="my-4">
+        
+        <div class="row">
+          <div class="col-md-6">
+            <p class="small mb-0">&copy; 2023 البراند. جميع الحقوق محفوظة.</p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <a href="#" class="text-light text-decoration-none small me-3">سياسة الخصوصية</a>
+            <a href="#" class="text-light text-decoration-none small me-3">شروط الاستخدام</a>
+            <a href="#" class="text-light text-decoration-none small">اتصل بنا</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        once: true
+      });
+
+      // Initialize Swipers
+      document.addEventListener('DOMContentLoaded', function() {
+        // Product Images Swiper
+        new Swiper('.product-images-swiper', {
+          loop: true,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          effect: 'fade'
+        });
+
+        // Product Thumbnails Swiper
+        new Swiper('.product-thumbnails', {
+          loop: true,
+          spaceBetween: 10,
+          slidesPerView: 4,
+          freeMode: true,
+          watchSlidesProgress: true,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          }
+        }).controller.control = new Swiper('.product-images-swiper');
+
+        // Related Products Swiper
+        new Swiper('.related-products', {
+          loop: true,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          breakpoints: {
+            0: {
+              slidesPerView: 1,
+              spaceBetween: 10
+            },
+            576: {
+              slidesPerView: 2,
+              spaceBetween: 15
+            },
+            992: {
+              slidesPerView: 1,
+              spaceBetween: 20
+            }
+          }
+        });
+      });
+
+      // Vue App
+      const { createApp } = Vue;
+      
+      createApp({
+        data() {
+          return {
+            showReviewForm: false,
+            rating: 0,
+            hoverRating: 0,
+            
+            selectedSize: null,
+            selectedColor: null,
+            
+            reviewForm: {
+              name: '',
+              email: '',
+              comment: ''
+            },
+            
+            product: {
+              id: 1,
+              title: 'تصميم مواقع احترافية',
+              shortDescription: 'تصميم موقع احترافي يتناسب مع هوية علامتك التجارية، مع واجهة مستخدم مبتكرة وتجربة مستخدم ممتازة.',
+              price: 2095,
+              originalPrice: 2500,
+              discount: 16,
+              rating: 4.8,
+              reviews: 45,
+              new: true,
+              images: [
+                'https://placehold.co/800x600/4361ee/ffffff?text=Product+1',
+                'https://placehold.co/800x600/3f37c9/ffffff?text=Product+2',
+                'https://placehold.co/800x600/7209b7/ffffff?text=Product+3',
+                'https://placehold.co/800x600/f72585/ffffff?text=Product+4'
+              ],
+              options: {
+                size: ['صغير', 'متوسط', 'كبير'],
+                color: [
+                  { name: 'أزرق', value: '#4361ee' },
+                  { name: 'أحمر', value: '#ef476f' },
+                  { name: 'أخضر', value: '#06d6a0' },
+                  { name: 'أسود', value: '#1d3557' }
+                ]
+              },
+              features: [
+                {
+                  title: 'تصميم متجاوب',
+                  description: 'يظهر موقعك بشكل مثالي على جميع الأجهزة، من الهواتف الذكية إلى أجهزة الكمبيوتر.'
+                },
+                {
+                  title: 'أداء عالي',
+                  description: 'نستخدم تقنيات حديثة لضمان سرعة تحميل الموقع وتجربة مستخدم ممتازة.'
+                },
+                {
+                  title: 'تحسين محركات البحث',
+                  description: 'نقوم بتحسين الموقع لمحركات البحث لزيادة ظهورك في نتائج البحث.'
+                },
+                {
+                  title: 'أمان عالي',
+                  description: 'نظام أمان متكامل لحماية موقعك وبياناتك من أي اختراقات.'
+                },
+                {
+                  title: 'دعم فني',
+                  description: 'دعم فني مستمر لحل أي مشكلة أو الإجابة على أي استفسار.'
+                },
+                {
+                  title: 'تحديثات دورية',
+                  description: 'نقدم تحديثات دورية للموقع لضمان استمرارية الأداء والحماية.'
+                }
+              ],
+              specifications: [
+                { name: 'نوع الخدمة', value: 'تصميم المواقع' },
+                { name: 'مدة التنفيذ', value: '2-4 أسابيع' },
+                { name: 'عدد الصفحات', value: 'حتى 5 صفحات' },
+                { name: 'نظام إدارة المحتوى', value: 'مخصص' },
+                { name: 'الاستضافة', value: 'متضمنة لمدة سنة' },
+                { name: 'نطاق الموقع', value: 'متضمن لمدة سنة' },
+                { name: 'نموذج تواصل', value: 'متضمن' },
+                { name: 'تحليلات الموقع', value: 'متضمن' },
+                { name: 'الدعم الفني', value: '3 أشهر' }
+              ],
+              included: [
+                {
+                  name: 'تصميم هوية بصرية',
+                  description: 'تصميم شعار وعناصر بصرية متكاملة لعلامتك التجارية.'
+                },
+                {
+                  name: 'استضافة الموقع',
+                  description: 'استضافة موثوقة وسريعة لموقعك لمدة سنة كاملة.'
+                },
+                {
+                  name: 'نطاق الموقع',
+                  description: 'نطاق موقعك (اسم الموقع) لمدة سنة كاملة.'
+                },
+                {
+                  name: 'نموذج تواصل',
+                  description: 'نموذج تواصل متكامل للتواصل مع عملائك.'
+                },
+                {
+                  name: 'تحليلات الموقع',
+                  description: 'نظام تحليلات لتحليل زيارات موقعك وسلوك الزوار.'
+                },
+                {
+                  name: 'دليل الاستخدام',
+                  description: 'دليل شامل لاستخدام وإدارة موقعك.'
+                }
+              ]
+            },
+            
+            relatedProducts: [
+              {
+                id: 2,
+                title: 'تطوير تطبيقات موبايل',
+                price: 6800,
+                originalPrice: 8000,
+                discount: 15,
+                rating: 4.9,
+                image: 'https://placehold.co/400x300/3f37c9/ffffff?text=App+Development'
+              },
+              {
+                id: 3,
+                title: 'حملات تسويق رقمية',
+                price: 3025,
+                originalPrice: 3500,
+                discount: 14,
+                rating: 4.7,
+                image: 'https://placehold.co/400x300/7209b7/ffffff?text=Digital+Marketing'
+              },
+              {
+                id: 4,
+                title: 'استضافة مواقع موثوقة',
+                price: 600,
+                originalPrice: 600,
+                discount: 0,
+                rating: 4.6,
+                image: 'https://placehold.co/400x300/f72585/ffffff?text=Hosting'
+              }
+            ],
+            
+            reviews: [
+              {
+                id: 1,
+                name: 'أحمد محمد',
+                date: '15 أكتوبر 2023',
+                rating: 5,
+                text: 'الجودة الممتازة والدعم الفني المميز جعل تجربتي معهم رائعة. أنصح بالتعامل معهم بشدة.',
+                avatar: 'https://placehold.co/100/4361ee/ffffff?text=AM'
+              },
+              {
+                id: 2,
+                name: 'فاطمة علي',
+                date: '8 أكتوبر 2023',
+                rating: 5,
+                text: 'نفذوا مشروعنا في الوقت المحدد وبجودة عالية. الفريق محترف جدًا ومتواصل بشكل ممتاز.',
+                avatar: 'https://placehold.co/100/7209b7/ffffff?text=FA'
+              },
+              {
+                id: 3,
+                name: 'خالد سعيد',
+                date: '1 أكتوبر 2023',
+                rating: 4,
+                text: 'النتائج كانت مذهلة! زادت مبيعاتنا بنسبة 150% بعد حملتهم التسويقية. شكراً لكم.',
+                avatar: 'https://placehold.co/100/f72585/ffffff?text=KS'
+              },
+              {
+                id: 4,
+                name: 'سارة عبدالله',
+                date: '20 سبتمبر 2023',
+                rating: 5,
+                text: 'تصميم الموقع كان ممتازًا ويعكس هوية علامتنا التجارية بشكل دقيق. خدمة العملاء كانت ممتازة.',
+                avatar: 'https://placehold.co/100/4cc9f0/ffffff?text=SA'
+              }
+            ]
+          }
+        },
+        
+        computed: {
+          currentRating() {
+            return this.hoverRating || this.rating;
+          }
+        },
+        
+        methods: {
+          addToCart() {
+            if (!this.selectedSize && this.product.options.size) {
+              alert('الرجاء اختيار الحجم');
+              return;
+            }
+            
+            if (!this.selectedColor && this.product.options.color) {
+              alert('الرجاء اختيار اللون');
+              return;
+            }
+            
+            alert(`تمت إضافة "${this.product.title}" إلى السلة بنجاح!`);
+          },
+          
+          buyNow() {
+            this.addToCart();
+            if (this.selectedSize || !this.product.options.size) {
+              alert('جاري توجيهك إلى صفحة الدفع...');
+            }
+          },
+          
+          submitReview() {
+            if (this.rating === 0) {
+              alert('الرجاء اختيار تقييم');
+              return;
+            }
+            
+            const newReview = {
+              id: this.reviews.length + 1,
+              name: this.reviewForm.name,
+              date: new Date().toLocaleDateString('ar-SA'),
+              rating: this.rating,
+              text: this.reviewForm.comment,
+              avatar: 'https://placehold.co/100/1d3557/ffffff?text=You'
+            };
+            
+            this.reviews.unshift(newReview);
+            this.reviewForm.name = '';
+            this.reviewForm.email = '';
+            this.reviewForm.comment = '';
+            this.rating = 0;
+            this.showReviewForm = false;
+            
+            alert('تم إرسال تقييمك بنجاح! وسيتم مراجعته من قبل الإدارة.');
+          }
+        }
+      }).mount('#app');
+    </script>
+  </div>
+</body>
+</html>
